@@ -9,14 +9,13 @@ module.exports = function check(str, bracketsConfig) {
   arrayConfig = new Set([...array]);
   // console.log(arrayConfig);
   let bracketsConfigFlat = bracketsConfig.flat();
-  let open = [];
-  let close = [];
+  let open = [], close = [], stack = [];
   let openIndex, closeIndex;
   bracketsConfig.forEach(element => {
     open.push(element[0]);
     close.push(element[1]);
   });
-  // console.log(bracketsConfigFlat);
+  // console.log(open, close);
   arrayConfig.forEach(element => {
     if (!bracketsConfigFlat.includes(element)) {
       return false;
@@ -37,9 +36,9 @@ for (let i = 0, len = array.length; i < len; i++) {
            }
        }
     }
-    // if (stack.length !== 0) {
-    //     return false;
-    // }
+    if (stack.length !== 0) {
+        return false;
+    }
     return true;
 }
 
