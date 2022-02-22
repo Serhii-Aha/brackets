@@ -15,7 +15,7 @@ module.exports = function check(str, bracketsConfig) {
       return false;
     }       
   })
-
+  return true;
   // for (let i = 0; i < bracketsConfig.length; i++) {
 
   // }
