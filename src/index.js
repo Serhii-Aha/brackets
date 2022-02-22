@@ -10,11 +10,11 @@ module.exports = function check(str, bracketsConfig) {
   // console.log(arrayConfig);
   let bracketsConfigFlat = bracketsConfig.flat();
   // console.log(bracketsConfigFlat);
-  arrayConfig.forEach(element => {
-    if (!bracketsConfigFlat.includes(element)) {
-      return false;
-    }       
-  })
+  // arrayConfig.forEach(element => {
+  //   if (!bracketsConfigFlat.includes(element)) {
+  //     return false;
+  //   }       
+  // })
 
 
   return true;
