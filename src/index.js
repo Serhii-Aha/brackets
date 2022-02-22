@@ -22,25 +22,34 @@ module.exports = function check(str, bracketsConfig) {
     }       
   })
   // return true;
-for (let i = 0, len = array.length; i < len; i++) {
-       openIndex = open.indexOf(array[i]);
-       if (openIndex !== -1) {
-           stack.push(openIndex);
-           continue;
-       }
-       closeIndex = close.indexOf(array[i]);
-       if (closeIndex !== -1) {
-           openIndex = stack.pop();
-           if (closeIndex !== openIndex) {
-               return false;
-           }
+
+  for (let i = 0, len = array.length; i < len; i++) {
+    if (array[i] == '|') {
+      array.splice(i, 1);
+      i--;
+    }
+  }
+  console.log(array);
+
+  for (let i = 0, len = array.length; i < len; i++) {
+    openIndex = open.indexOf(array[i]);
+      if (openIndex !== -1) {
+        stack.push(openIndex);
+        continue;
+      }
+    closeIndex = close.indexOf(array[i]);
+      if (closeIndex !== -1) {
+          openIndex = stack.pop();
+        if (closeIndex !== openIndex) {
+          return false;
+        }
        }
     }
     if (stack.length !== 0) {
-        return false;
+      return false;
     }
     return true;
-}
+  }
 
   // for (let i = 0; i < bracketsConfig.length; i++) {
 
