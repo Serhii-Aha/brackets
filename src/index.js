@@ -9,12 +9,14 @@ module.exports = function check(str, bracketsConfig) {
   arrayConfig = new Set([...array]);
   // console.log(arrayConfig);
   let bracketsConfigFlat = bracketsConfig.flat();
-  console.log(bracketsConfigFlat);
+  // console.log(bracketsConfigFlat);
   arrayConfig.forEach(element => {
     if (!bracketsConfigFlat.includes(element)) {
       return false;
     }       
   })
+
+
   return true;
   // for (let i = 0; i < bracketsConfig.length; i++) {
 
