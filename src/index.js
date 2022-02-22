@@ -37,9 +37,9 @@ for (let i = 0, len = array.length; i < len; i++) {
            }
        }
     }
-    if (stack.length !== 0) {
-        return false;
-    }
+    // if (stack.length !== 0) {
+    //     return false;
+    // }
     return true;
 }
 
