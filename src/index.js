@@ -2,21 +2,17 @@ module.exports = function check(str, bracketsConfig) {
   if (str.length % 2 != 0) {
     return false;
   }
-  // else {
-  //   return true;
-  // }
   let array = str.split('');
   arrayConfig = new Set([...array]);
   
   let bracketsConfigFlat = bracketsConfig.flat();
   let open = [], close = [], stack = [];
   let openIndex, closeIndex, nullIndex,
-    k = 0;
+    k1 = 0, k7 = 0, k8 = 0; 
   bracketsConfig.forEach(element => {
     open.push(element[0]);
     close.push(element[1]);
-  });
-  
+  }); 
   arrayConfig.forEach(element => {
     if (!bracketsConfigFlat.includes(element)) {
       return false;
@@ -27,20 +23,41 @@ module.exports = function check(str, bracketsConfig) {
     openIndex = open.indexOf(array[i]);
     if (openIndex !== -1) {
       // continue;
-      if (array[i] == '|') {
-        if (k == 0) {
-          k = 1;
-          stack.push(openIndex);
-          continue;
-        } else {
-          k = 0;
-          // continue;
-        }
-      } else {
-        stack.push(openIndex);
-        continue;
+      switch (array[i])    {
+        case '|' : 
+                      if (k1 == 0) {
+                        k1 = 1;
+                        stack.push(openIndex);
+                        continue;
+                      } else {
+                        k1 = 0;
+                      } 
+        break;
+        case '7' : 
+                      if (k7 == 0) {
+                        k7 = 1;
+                        stack.push(openIndex);
+                        continue;
+                      } else {
+                        k7 = 0;
+                    } 
+        break;
+        case '8' : 
+                      if (k8 == 0) {
+                        k8 = 1;
+                        stack.push(openIndex);
+                        continue;
+                      } else {
+                        k8 = 0;
+                      } 
+        break;
+        default :   
+                      stack.push(openIndex);
+                      continue;
+        
       }
     }
+
     closeIndex = close.indexOf(array[i]);
     if (closeIndex !== -1) {
         openIndex = stack.pop();
@@ -54,12 +71,7 @@ module.exports = function check(str, bracketsConfig) {
       return false;
     }
     return true;
-  
 }
-
-  // for (let i = 0; i < bracketsConfig.length; i++) {
-
-  // }
 
 
 
