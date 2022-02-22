@@ -7,49 +7,55 @@ module.exports = function check(str, bracketsConfig) {
   // }
   let array = str.split('');
   arrayConfig = new Set([...array]);
-  // console.log(arrayConfig);
+  
   let bracketsConfigFlat = bracketsConfig.flat();
   let open = [], close = [], stack = [];
-  let openIndex, closeIndex;
+  let openIndex, closeIndex, nullIndex,
+    k = 0;
   bracketsConfig.forEach(element => {
     open.push(element[0]);
     close.push(element[1]);
   });
-  // console.log(open, close);
+  
   arrayConfig.forEach(element => {
     if (!bracketsConfigFlat.includes(element)) {
       return false;
-    }       
-  })
-  // return true;
-
-  for (let i = 0, len = array.length; i < len; i++) {
-    if (array[i] == '|') {
-      array.splice(i, 1);
-      i--;
     }
-  }
-  console.log(array);
-
+  })
+  
   for (let i = 0, len = array.length; i < len; i++) {
     openIndex = open.indexOf(array[i]);
-      if (openIndex !== -1) {
+    if (openIndex !== -1) {
+      // continue;
+      if (array[i] == '|') {
+        if (k == 0) {
+          k = 1;
+          stack.push(openIndex);
+          continue;
+        } else {
+          k = 0;
+          // continue;
+        }
+      } else {
         stack.push(openIndex);
         continue;
       }
+    }
     closeIndex = close.indexOf(array[i]);
-      if (closeIndex !== -1) {
-          openIndex = stack.pop();
+    if (closeIndex !== -1) {
+        openIndex = stack.pop();
         if (closeIndex !== openIndex) {
           return false;
         }
-       }
+      }
+
     }
     if (stack.length !== 0) {
       return false;
     }
     return true;
-  }
+  
+}
 
   // for (let i = 0; i < bracketsConfig.length; i++) {
 
